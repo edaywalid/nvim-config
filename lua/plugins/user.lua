@@ -158,7 +158,21 @@ return {
   {
     "mfussenegger/nvim-jdtls",
   },
+
   {
+
     "github/copilot.vim",
+
+    config = function()
+      -- Set copilot_no_tab_map to true
+      vim.g.copilot_no_tab_map = true
+      -- Set key mappings using vim.api.nvim_set_keymap
+      vim.api.nvim_set_keymap("i", "<C-l>", 'copilot#Accept("\\<CR>")', {
+        expr = true,
+        silent = true,
+        noremap = true,
+        replace_keycodes = false,
+      })
+    end,
   },
 }
