@@ -15,5 +15,7 @@ return {
   { import = "astrocommunity.colorscheme.gruvbox-nvim" },
   ----- programming language support------------------
   { import = "astrocommunity.programming-language-support.rest-nvim" },
+  --- markdown and latex support -----------------------
+  { import = "astrocommunity.markdown-and-latex.markdown-preview-nvim" },
   -- import/override with your plugins folder
 }
