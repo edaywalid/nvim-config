@@ -8,6 +8,7 @@ return {
   ----- language packs ---------------
   { import = "astrocommunity.pack.lua" },
   { import = "astrocommunity.pack.typescript" },
+  { import = "astrocommunity.pack.dart" },
   ----- color scheme -----------
   { import = "astrocommunity.colorscheme.catppuccin" },
   { import = "astrocommunity.colorscheme.tokyonight-nvim" },
