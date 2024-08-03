@@ -155,10 +155,13 @@ return {
 ]]
     end,
   },
-  {
-    "mfussenegger/nvim-jdtls",
-  },
 
+  ------- rust ---------------
+  {
+    "mrcjkb/rustaceanvim",
+    version = "^5",
+    lazy = false,
+  },
   {
 
     "github/copilot.vim",
