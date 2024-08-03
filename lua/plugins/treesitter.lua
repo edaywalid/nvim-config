@@ -16,6 +16,14 @@ return {
       "bash",
       "javascript",
       "typescript",
+      "go",
+      "sql",
+      "json",
+      "yaml",
+      "toml",
+      "html",
+      "css",
+
       -- add more arguments for adding more treesitter parsers
     })
   end,
