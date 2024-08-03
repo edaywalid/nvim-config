@@ -76,84 +76,33 @@ return {
   {
     "folke/todo-comments.nvim",
     dependencies = { "nvim-lua/plenary.nvim" },
-    opts = {
-      -- your configuration comes here
-      -- or leave it empty to use the default settings
-      -- refer to the configuration section below
-    },
+    opts = {},
     event = "User AstroFile",
   },
-  ------- rust ---------------
+  -------- java ---------
   {
-    "rust-lang/rust.vim",
-    ft = "rust",
-    init = function() vim.g.rustfmt_autosave = 1 end,
-  },
-
-  {
-    "simrat39/rust-tools.nvim",
-    ft = "rust",
-    config = function()
-      local rt = require "rust-tools"
-      local mason_registry = require "mason-registry"
-
-      local codelldb = mason_registry.get_package "codelldb"
-      local extension_path = codelldb:get_install_path() .. "/extension/"
-      local codelldb_path = extension_path .. "adapter/codelldb"
-      local liblldb_path = extension_path .. "lldb/lib/liblldb.so"
-
-      rt.setup {
-        dap = {
-          adapter = require("rust-tools.dap").get_codelldb_adapter(codelldb_path, liblldb_path),
-        },
-        server = {
-          on_attach = function(_, bufnr)
-            -- Hover actions
-            vim.keymap.set("n", "<Leader>k", rt.hover_actions.hover_actions, { buffer = bufnr })
-            -- Code action groups
-            vim.keymap.set("n", "<Leader>a", rt.code_action_group.code_action_group, { buffer = bufnr })
-          end,
-        },
-        tools = {
-          hover_actions = {
-            auto_focus = true,
+    "mfussenegger/nvim-jdtls",
+    opts = {
+      settings = {
+        java = {
+          configuration = {
+            runtimes = {
+              {
+                name = "JavaSE-22",
+                path = "/usr/lib/jvm/java-22-openjdk",
+              },
+            },
           },
         },
-      }
-
-      -- LSP Diagnostics Options Setup
-      local sign = function(opts)
-        vim.fn.sign_define(opts.name, {
-          texthl = opts.name,
-          text = opts.text,
-          numhl = "",
-        })
-      end
-
-      sign { name = "DiagnosticSignError", text = "" }
-      sign { name = "DiagnosticSignWarn", text = "" }
-      sign { name = "DiagnosticSignHint", text = "" }
-      sign { name = "DiagnosticSignInfo", text = "" }
-
-      vim.diagnostic.config {
-        virtual_text = false,
-        signs = true,
-        update_in_insert = true,
-        underline = true,
-        severity_sort = false,
-        float = {
-          border = "rounded",
-          source = "always",
-          header = "",
-          prefix = "",
+        format = {
+          enabled = true,
+          settings = {
+            url = "https://raw.githubusercontent.com/google/styleguide/gh-pages/eclipse-java-google-style.xml",
+            profile = "GoogleStyle",
+          },
         },
-      }
-
-      vim.cmd [[
-        set signcolumn=yes
-        autocmd CursorHold * lua vim.diagnostic.open_float(nil, { focusable = false })
-]]
-    end,
+      },
+    },
   },
 
   ------- rust ---------------
